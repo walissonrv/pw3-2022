@@ -15,7 +15,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-        return view('admin.main');
+        $categorias = Categoria::all(); // chama o metodo que puxa todas as categorias do banco e coloca na variavel
+        return view('admin.categorias.index', compact('categorias')); // compact eu ejeto a variavel  dentro do blade
     }
 
     /**
@@ -26,6 +27,8 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+        return  view('admin.categorias.create');
+
     }
 
     /**
@@ -37,6 +40,9 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        Categoria::create($request->all()); // insere no banco
+
+        return  redirect()->route('categorias.index');
     }
 
     /**
@@ -82,5 +88,7 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         //
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }
