@@ -54,6 +54,7 @@ class CategoriaController extends Controller
     public function show(Categoria $categoria)
     {
         //
+        return  abort( 404, 'Pagina nao encontrada!.');
     }
 
     /**
@@ -64,7 +65,10 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+
+        return view('admin.categorias.edit', compact('categoria'));
+
+
     }
 
     /**
@@ -76,7 +80,10 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $params= $request->all();
+        $categoria->update($params);
+        return  redirect()->route('categorias.index');
+
     }
 
     /**

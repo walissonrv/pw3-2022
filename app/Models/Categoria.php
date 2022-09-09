@@ -14,4 +14,9 @@ class Categoria extends Model
 ]; // toda coluna criada nas tabelas deve ser colocada dentro de fillable
 
 
+    public function subcategorias(){
+        return $this->hasMany(Subcategoria::class);
+    }
+
 }
+
