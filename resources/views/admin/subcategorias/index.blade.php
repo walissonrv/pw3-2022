@@ -3,7 +3,7 @@
 @section('conteudo')
     <div class="container">
         <div class="row">
-            <a href="{{route('categorias.create')}}" class="btn btn-success">Novo</a>
+            <a href="{{route('subcategorias.create')}}" class="btn btn-success">Novo</a>
         </div>
         <div class="row">
             <table class="table table-hover">
@@ -14,12 +14,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categorias as $categoria)
+                @foreach($subcategorias as $subcategoria)
                     <tr>
-                        <td class="table-column-70">{{$categoria->nome}}</td>
+                        <td class="table-column-70">{{$subcategoria->nome}}</td>
                         <td>
-                            <a href="{{route('categorias.edit', $categoria)}}" class="btn btn-primary">Editar</a>
-                            <form action="{{route('categorias.destroy', $categoria)}}" method="post" class="form-delete">
+                            <a href="{{route('subcategorias.show', $subcategoria)}}" class="btn btn-outline-dark">Ver</a>
+                            <a href="{{route('subcategorias.edit', $subcategoria)}}" class="btn btn-primary">Editar</a>
+                            <form action="{{route('subcategorias.destroy', $subcategoria)}}" method="post" class="form-delete">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Excluir</button>

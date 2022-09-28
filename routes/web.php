@@ -17,9 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hello-world/{nome}',[\App\Http\Controllers\TesteController::class,'mostrarNome']); // chama o metodo de controller e mostra na tela
-Route::get('/soma/{n1}/{n2}',[\App\Http\Controllers\TesteController::class, 'soma']);
+Route::get('/hello-world', function () {
+    return 'Hello World!';
+});
 
-Route::resource('categorias', \App\Http\Controllers\CategoriaController::class); // resource mapeia todas as rotas  e chama todos os metodos do controler
+Route::get('/hello-world/{nome}', [\App\Http\Controllers\TesteController::class, 'mostrarNome']);
+Route::get('/soma/{n1}/{n2}', [\App\Http\Controllers\TesteController::class, 'soma']);
+
+Route::resource('categorias', \App\Http\Controllers\CategoriaController::class);
+Route::resource('subcategorias', \App\Http\Controllers\SubcategoriaController::class);
+Route::resource('produtos', \App\Http\Controllers\ProdutoController::class);
 
 

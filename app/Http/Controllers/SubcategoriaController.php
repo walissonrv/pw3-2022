@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Categoria;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class SubcategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $subcategorias = Subcategoria::all();
+        return view('admin.subcategorias.index', compact('subcategorias'));
     }
 
     /**
@@ -24,7 +25,8 @@ class SubcategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('admin.subcategorias.create', compact('categorias'));
     }
 
     /**
@@ -35,7 +37,8 @@ class SubcategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Subcategoria::create($request->all());
+        return redirect()->route('subcategorias.index');
     }
 
     /**
@@ -46,7 +49,7 @@ class SubcategoriaController extends Controller
      */
     public function show(Subcategoria $subcategoria)
     {
-        //
+        return view('admin.subcategorias.show', compact('subcategoria'));
     }
 
     /**
@@ -57,7 +60,8 @@ class SubcategoriaController extends Controller
      */
     public function edit(Subcategoria $subcategoria)
     {
-        //
+        $categorias = Categoria::all();
+        return view('admin.subcategorias.edit', compact('subcategoria', 'categorias'));
     }
 
     /**
@@ -69,7 +73,9 @@ class SubcategoriaController extends Controller
      */
     public function update(Request $request, Subcategoria $subcategoria)
     {
-        //
+        $params = $request->all();
+        $subcategoria->update($params);
+        return redirect()->route('subcategorias.index');
     }
 
     /**
@@ -80,6 +86,7 @@ class SubcategoriaController extends Controller
      */
     public function destroy(Subcategoria $subcategoria)
     {
-        //
+        $subcategoria->delete();
+        return redirect()->route('subcategorias.index');
     }
 }
