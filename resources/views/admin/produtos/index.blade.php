@@ -35,6 +35,12 @@
                     </tr>
                 @endforeach
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5">{{$produtos->links()}}</td>
+
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>
