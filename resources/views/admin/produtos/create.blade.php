@@ -19,6 +19,8 @@
                             <label for="valor">Valor:</label>
                             <input type="number" name="valor" id="valor" class="form-control" required>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="form-group">

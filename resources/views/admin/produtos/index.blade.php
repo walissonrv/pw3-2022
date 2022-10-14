@@ -13,16 +13,21 @@
                     <th>Subcategoria</th>
                     <th>Estoque</th>
                     <th>Valor</th>
+                    <th>Imagem</th>
                     <th>-</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($produtos as $produto)
+
                     <tr>
                         <td class="table-column-50">{{$produto->nome}}</td>
                         <td>{{$produto->subcategoria->nome}}</td>
                         <td>{{$produto->estoque}}</td>
                         <td>{{$produto->valor}}</td>
+                        <td>
+                            <img src="{{\Illuminate\Support\Facades\Storage::url('produtos/'.$produto->imagem)}}" style="width: 100px">
+                        </td>
                         <td>
                             <a href="{{route('produtos.show', $produto)}}" class="btn btn-outline-dark">Ver</a>
                             <a href="{{route('produtos.edit', $produto)}}" class="btn btn-primary">Editar</a>
