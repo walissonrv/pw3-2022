@@ -3,6 +3,10 @@
 @section('conteudo')
     <div class="container">
         <div class="row">
+            <div class="col col-1"><b>Imagem</b></div>
+            <div class="col col-11"><img src="{{\Illuminate\Support\Facades\Storage::url('produtos/'.$produto->imagem)}}" style="height: 250px; width: 250px"></div>
+        </div>
+        <div class="row">
             <div class="col col-1"><b>Nome:</b></div>
             <div class="col col-11">{{$produto->nome}}</div>
         </div>
