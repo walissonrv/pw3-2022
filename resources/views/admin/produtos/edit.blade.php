@@ -10,16 +10,26 @@
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" id="nome" class="form-control" required value="{{$produto->nome}}">
                 </div>
+                @error('nome')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <div class="row">
                         <div class="col col-6">
                             <label for="estoque">Estoque:</label>
                             <input type="number" name="estoque" id="estoque" class="form-control" required value="{{$produto->estoque}}">
                         </div>
+                        @error('estoque')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                         <div class="col col-6">
                             <label for="valor">Valor:</label>
                             <input type="number" name="valor" id="valor" class="form-control" required value="{{$produto->valor}}">
                         </div>
+                        @error('valor')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -39,6 +49,9 @@
                     <label for="descricao">Descricão:</label>
                     <textarea name="descricao" id="descricao" cols="30" rows="10" class="form-control">{{$produto->descricao}}</textarea>
                 </div>
+                @error('descricao')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <button class="btn btn-success" type="submit">Gravar</button>
                     <a class="btn btn-danger" href="{{route('produtos.index')}}">Cancelar</a>

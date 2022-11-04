@@ -39,6 +39,13 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'nome'=>['required', 'string','max:30'],
+            'estoque'=>['required','integer'],
+            'valor'=>['required', 'integer'],
+            'descricao'=>['required']
+        ]);
+
         // Define o valor default para a variável que contém o nome da imagem
         $nameFile = null;
 
@@ -112,9 +119,16 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
+        $request->validate([
+            'nome'=>['required', 'string','max:30'],
+            'estoque'=>['required','integer'],
+            'valor'=>['required', 'integer'],
+            'descricao'=>['required']
+        ]);
         $params = $request->all();
         $produto->update($params);
         return redirect()->route('produtos.index');
+
     }
 
     /**

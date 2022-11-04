@@ -37,6 +37,9 @@ class SubcategoriaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome'=> ['required', 'string','max:30']
+        ]);
         Subcategoria::create($request->all());
         return redirect()->route('subcategorias.index');
     }
@@ -76,6 +79,7 @@ class SubcategoriaController extends Controller
         $params = $request->all();
         $subcategoria->update($params);
         return redirect()->route('subcategorias.index');
+
     }
 
     /**

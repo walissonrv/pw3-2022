@@ -9,6 +9,9 @@
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" id="nome" class="form-control" required>
                 </div>
+                @error('nome')
+                <p class="text-danger">{{$message}}</p>
+                @enderror
                 <div class="form-group">
                     <label for="categoria">Categoria:</label>
                     <select name="categoria_id" id="categoria" class="form-control" required>

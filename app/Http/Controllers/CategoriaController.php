@@ -40,6 +40,9 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nome'=> ['required', 'string','max:30']
+        ]);
         Categoria::create($request->all()); // insere no banco
 
         return  redirect()->route('categorias.index');
@@ -66,7 +69,11 @@ class CategoriaController extends Controller
     public function edit(Categoria $categoria)
     {
 
+
         return view('admin.categorias.edit', compact('categoria'));
+
+
+
 
 
     }
@@ -80,6 +87,9 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
+        $request->validate([
+            'nome'=> ['required', 'string','max:30']
+        ]);
         $params= $request->all();
         $categoria->update($params);
         return  redirect()->route('categorias.index');
