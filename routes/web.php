@@ -34,7 +34,7 @@ Route::get('vitrine/single', function (){
 
 // INICIO CARRINHO DE COMPRAS-------------------------------
 
-Route::get('vitrine/carrinho', [\App\Http\Controllers\CarrinhoComprasController::class, 'index'])->name('vitrine.carrinho');
+Route::get('vitrine/carrinho', [\App\Http\Controllers\CarrinhoComprasController::class, 'index'])->name('vitrine.carrinho')->name('vitrine.index');
 Route::post('vitrine/carrinho', [\App\Http\Controllers\CarrinhoComprasController::class, 'adicionarItemCarrinho'])->name('vitrine.addcarrinho');
 Route::delete('vitrine/carrinho', [\App\Http\Controllers\CarrinhoComprasController::class, 'removerItemCarrinho'])->name('vitrine.delcarrinho');
 Route::put('vitrine/carrinho', [\App\Http\Controllers\CarrinhoComprasController::class, 'alterarItemCarrinho'])->name('vitrine.updcarrinho');
@@ -42,6 +42,11 @@ Route::get('vitrine/carrinho/clear', [\App\Http\Controllers\CarrinhoComprasContr
 
 // FIM CARRINHO DE COMPRAS------------------------------------
 
+// Gerenciamento do Cliente-------------------------
+
+Route::get('vitrine/cliente/create',[\App\Http\Controllers\ClientController::class, 'create'])->name('cliente.create');
+
+//FIM Gerenciamento cliente-------------------------
 Route::get('/hello-world', function () {
     return 'Hello World!';
 });
