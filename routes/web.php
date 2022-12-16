@@ -45,8 +45,21 @@ Route::get('vitrine/carrinho/clear', [\App\Http\Controllers\CarrinhoComprasContr
 // Gerenciamento do Cliente-------------------------
 
 Route::get('vitrine/cliente/create',[\App\Http\Controllers\ClientController::class, 'create'])->name('cliente.create');
+Route::post('vitrine/cliente/',[\App\Http\Controllers\ClientController::class, 'store'])->name('cliente.store');
+Route::get('vitrine/cliente/login',[\App\Http\Controllers\ClientController::class, 'createLogin'])->name('cliente.login.create');
+Route::post('vitrine/cliente/login',[\App\Http\Controllers\ClientController::class, 'login'])->name('cliente.login');
+Route::get('vitrine/cliente/logout',[\App\Http\Controllers\ClientController::class, 'logout'])->name('cliente.logout');
 
 //FIM Gerenciamento cliente-------------------------
+
+// Finalizar Pedido-----------------
+
+Route::get('vitrine/pedido/checar', [\App\Http\Controllers\PedidoController::class, 'checarPedido'])->name('pedido.checar');
+Route::get('vitrine/pedido/finalizar', [\App\Http\Controllers\PedidoController::class, 'finalizarPedido'])->name('pedido.finalizar');
+
+//FIM Finalizar Pedido--------------
+
+
 Route::get('/hello-world', function () {
     return 'Hello World!';
 });

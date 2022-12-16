@@ -3,8 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Categoria;
+use App\Models\Produto;
 use App\Models\Subcategoria;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+
+
+
+
+
+
+
 
 
 class ClientController extends Controller
@@ -39,8 +53,25 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $client = Client::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($client));
+
+        Auth::login($client);
+
+        return redirect()->route('cliente.login.create');
     }
+
 
     /**
      * Display the specified resource.
@@ -85,5 +116,29 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+    public function createLogin()
+    {
+        $categorias = Categoria::all();
+        $subcategorias =Subcategoria::all();
+        if(!Auth::guard('vitrine')->check()){
+            return view('vitrine.cliente.login-cliente', compact('categorias', 'subcategorias'));
+        }else{
+            return redirect()->route('vitrine.carrinho');
+        }
+
+    }
+    public function login(Request $request){
+        $credentials=[
+            'email'=>$request->email,
+            'password'=>$request->password
+        ];
+        if(Auth::guard('vitrine')->attempt($credentials)){
+            return redirect()->route('vitrine.index');
+        }
+    }
+    public function logout(){
+        Auth::guard('vitrine')->logout();
+        return redirect()->route('vitrine.index');
     }
 }

@@ -14,9 +14,18 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'web'=>[
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'client'=>[
+            'driver' => 'session',
+            'provider' => 'clients',
+        ],
+
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -40,6 +49,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'vitrine'=>[
+            'driver'=>'session',
+            'provider'=>'clients',
+
+        ],
+
     ],
 
     /*
@@ -64,6 +79,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'clients' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Client::class,
+            ],
 
         // 'users' => [
         //     'driver' => 'database',
